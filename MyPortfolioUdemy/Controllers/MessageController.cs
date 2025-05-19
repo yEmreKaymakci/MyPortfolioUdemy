@@ -13,6 +13,29 @@ namespace MyPortfolioUdemy.Controllers
             return View(values);
         }
         [HttpGet]
+
+        public IActionResult ChangeIsReadToTrue(int id)
+        {
+            var value = context.Messages.Find(id);
+            value.IsRead = true;
+            context.SaveChanges();
+            return RedirectToAction("MessageList");
+        }
+
+        public IActionResult ChangeIsReadToFalse(int id)
+        {
+            var value = context.Messages.Find(id);
+            value.IsRead = false;
+            context.SaveChanges();
+            return RedirectToAction("MessageList");
+        }
+
+        public IActionResult MessageDetail(int id)
+        {
+            var value = context.Messages.Find(id);
+            return View(value);
+        }
+
         public IActionResult CreateMessage()
         {
             return View();
